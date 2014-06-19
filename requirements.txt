@@ -1,0 +1,6 @@
+coverage
+Django
+django-coverage
+django-debug-toolbar
+psycopg2
+South
