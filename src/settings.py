@@ -36,7 +36,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'south',
+
+    'memorymodel',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -48,9 +51,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'memorymodel.urls'
+ROOT_URLCONF = 'urls'
 
-WSGI_APPLICATION = 'memorymodel.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 
 
 # Database
@@ -61,7 +64,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'memorymodel',
         'USER': 'memorymodel',
-        'PASSWORD': '1',
+        'PASSWORD': 'dgY4#o0G',
         'HOST': 'localhost',
         'PORT': '5432',
     }

@@ -1,6 +1,7 @@
-coverage
-Django
-django-coverage
-django-debug-toolbar
-psycopg2
-South
+coverage==3.7.1
+Django==1.6.5
+django-coverage==1.2.4
+django-debug-toolbar==1.2.1
+psycopg2==2.5.3
+pyyaml==3.11
+South==0.8.4
