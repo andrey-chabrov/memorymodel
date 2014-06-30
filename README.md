@@ -1,7 +1,10 @@
 memorymodel
 ===========
 
-Operates with Django model classes saved in memory.
+Operates with Django model classes saved in memory from yaml.
+
+Main code block that creates a models located in ./src/memorymodel/generator.py
+module.
 
 Installation:
     1) Install PostgreSQL server at first.
