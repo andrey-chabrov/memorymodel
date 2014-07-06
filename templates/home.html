@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+	<ul>
+    {% for name, model in models %}
+    	<li><a href=''>{{ name }}</a></li>
+    {% endfor %}
+	</ul>
+
+{% endblock %}
