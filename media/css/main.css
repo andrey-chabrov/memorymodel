@@ -1,0 +1,211 @@
+html, body {
+    margin: 0 auto;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    position: relative;
+    font-family: arial, sans-serif;
+    font-size: 13px;
+    background: #ccc;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.clear {
+    clear: both;
+}
+
+.wrap {
+    margin: 0 auto;
+    padding: 0 0 0 26px;
+    min-height: 100%;     
+    background: url(images/back_left.jpg) repeat-y left #fff;
+    width: 90%;    
+}
+
+.wrapper {
+   padding: 0 26px 0 0; 
+   min-height: 100%;  
+   background: url(images/back_right.jpg) repeat-y right;
+}
+
+div.header {
+    width: 100%;
+    margin: 0 0 20px;
+    border-bottom: 5px solid #5ba449;
+}
+
+div.header * {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    color: white;
+}
+
+div.headerbox-one {
+    padding: 5px 10px 15px;
+    height: 35px;
+    line-height: 35px;
+    background: #447738;
+}
+
+div.headerbox {
+    padding: 5px 10px 0;
+    height: 35px;
+    line-height: 35px;
+    background: url(images/menu_back.jpg);
+    border-top: 1px solid #5ba449;
+}
+
+div.header li {
+    float: left;
+    list-style: none;
+}
+
+.nav-left {
+    float: left;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.nav-left li {
+    white-space: nowrap;
+    margin-right: 5px;
+}
+
+.nav-left li a {
+     padding: 8px;
+     background: #255519;
+    -moz-border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+    -moz-box-shadow: 3px 1px 1px rgba(0, 0, 0, .2) inset, 1px 0 0 rgba(255, 255, 255, .5), 0 -1px 0 0 rgba(255, 255, 255, .7);
+    -webkit-box-shadow: 3px 1px 1px rgba(0, 0, 0, .2) inset, 1px 0 0 rgba(255, 255, 255, .5), 0 -1px 0 0 rgba(255, 255, 255, .7);
+    box-shadow: 3px 1px 1px rgba(0, 0, 0, .2) inset, 1px 0 0 rgba(255, 255, 255, .5), -0 -1px 0 0 rgba(255, 255, 255, .7);
+    text-shadow: 1px 1px 1px rgba(0,0,0,.4);
+}
+
+.nav-left li a:hover {
+     background: #103f04;
+}
+
+.nav-right {
+    float: right;
+    position: relative;
+    top: 15px;
+    right: 10px;
+}
+
+.nav-right li {
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid #fff;
+    line-height: 15px;
+}
+
+.nav-right li:first-child {
+    border: none;
+}
+
+div.content {
+    width: 100%;
+}
+
+div.contentbox {
+    padding: 0 10px 20px;
+}
+
+div.contentbox a {
+    color: #3f3f3f;
+    font-weight: normal;
+}
+
+div.contentbox a:hover {
+    color: #8c0202;
+}
+
+ol li {
+    margin: 0 0 5px;
+    font-weight: bold;
+    color: #3f3f3f;
+}
+
+ul.messages {
+    list-style-type: none;
+    font-style: italic;
+}
+
+.messages .error {
+    color: red;
+}
+
+.messages .success {
+    color: silver;
+}
+
+.back-link {
+    margin: 10px 0 0 10px;
+}
+
+div.menubar span.gap {
+    float: right;
+    width: 10px;
+}
+
+div.menu {
+    float: right;
+}
+
+div.menu a:hover {
+    text-decoration: underline;
+    color: #E7C36E;
+}
+
+div.menu div.menuitems {
+    display: none;
+}
+
+div.menubar:hover div.menuitems {
+    display: block;
+    position: absolute;
+    right: auto;
+    white-space: nowrap;
+    background: white;
+    border: 1px solid silver;
+    right: 0;
+}
+
+.content-wrap {
+    padding: 0 0 0 0px;
+}
+
+#tree, 
+.content-wrapper {
+    float: left;
+}
+
+#tree {
+    width: 280px;
+    margin: 0 0 0 -300px;
+}
+
+.content-wrapper {
+    padding: 0 0 70px;
+    width: 100%;
+}
+
+.error-list {
+    list-style: none;
+    color: #cc0000;
+    font-style: italic;
+}
