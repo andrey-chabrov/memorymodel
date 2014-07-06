@@ -1,0 +1,20 @@
+[
+  {
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+      "username": "admin", 
+      "first_name": "", 
+      "last_name": "", 
+      "is_active": true, 
+      "is_superuser": true, 
+      "is_staff": true, 
+      "last_login": "2014-07-06T08:44:19.450Z", 
+      "groups": [], 
+      "user_permissions": [], 
+      "password": "pbkdf2_sha256$12000$phviNzyK1qqk$HPVkFnkw8xkD3lOzpP1DrXoFgp4f+t0V6jQD9O05KyI=", 
+      "email": "admin@memorymodel.com", 
+      "date_joined": "2014-07-06T08:44:19.450Z"
+    }
+  }
+]
