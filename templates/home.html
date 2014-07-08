@@ -53,7 +53,9 @@
             {% endfor %}
         {% endfor %}
 
-        <input class="save-button" type="submit" value="Отправить" />
+        {% if formset != None %}
+            <input class="save-button" type="submit" value="Отправить" />
+        {% endif %}
 
     </form>
 
