@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from django.contrib.contenttypes.models import ContentType
-from django.forms.models import modelformset_factory
-
 from annoying.decorators import render_to
+
+from django.contrib.contenttypes.models import ContentType
+from django.core.urlresolvers import reverse
+from django.forms.models import modelformset_factory
+from django.http import Http404
+from django.shortcuts import redirect
 
 import memorymodel
 
@@ -17,10 +20,15 @@ def home(request, modelname=None):
         'model', flat=True)))
 
     model = modelname and getattr(memorymodel.models, modelname, None)
-    formset = model and modelformset_factory(model)()
+    if modelname is not None and model is None:
+        raise Http404()
+
+    formset = model and modelformset_factory(model)(request.POST or None)
 
     if request.method == 'POST':
-        pass
+        if formset.is_valid():
+            formset.save()
+            return redirect(reverse('model', kwargs={'modelname': modelname}))
 
     return {
         'pagetitle': u'Tables',

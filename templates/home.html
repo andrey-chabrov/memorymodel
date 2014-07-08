@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% load url from future %}
 
+
+{% block javascript %} 
+    {# <script src="{{ STATIC_URL }}admin/js/calendar.js" type="text/javascript"></script> #}
+{% endblock %}
+
 {% block content %}
 
 	<ul>
@@ -13,6 +18,8 @@
 
         <table border=1>
 
+            {{ formset.management_form }}
+
             <tr>
                 {% for field in formset.0.visible_fields %}
                     <td>{{ field.label }}</td>
@@ -23,7 +30,7 @@
                 {% if not forloop.last %}
                     <tr>
                         {% for field in form.visible_fields %}
-                            <td>{{ field }}</td>
+                            <td>{% include "field.html" %}</td>
                         {% endfor %}
                     </tr>
                 {% else %}
@@ -32,7 +39,7 @@
                     </tr>
                     <tr>
                         {% for field in form.visible_fields %}
-                            <td>{{ field }}</td>
+                            <td>{% include "field.html" %}</td>
                         {% endfor %}
                     </tr>
                 {% endif %}
