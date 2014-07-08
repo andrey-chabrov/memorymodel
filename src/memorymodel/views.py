@@ -11,8 +11,8 @@ import memorymodel
 @render_to('home.html')
 def home(request, modelname=None):
 
-    models = ((model._meta.verbose_name, model) for model in
-        (getattr(memorymodel.models, model_name) for model_name in 
+    models = ((model_name, model._meta.verbose_name, model) for model_name, model in
+        ((model_name, getattr(memorymodel.models, model_name)) for model_name in 
         ContentType.objects.filter(app_label='memorymodel').values_list(
         'model', flat=True)))
 

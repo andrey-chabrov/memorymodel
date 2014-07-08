@@ -4,8 +4,8 @@
 {% block content %}
 
 	<ul>
-        {% for name, model in models %}
-        	{# <li><a href='{% url "model" modelname=name %}'>{{ name }}</a></li> #}
+        {% for model_name, name, model in models %}
+        	<li><a href='{% url "model" modelname=model_name %}'>{{ name }}</a></li>
         {% endfor %}
 	</ul>
 
