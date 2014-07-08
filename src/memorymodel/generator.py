@@ -39,7 +39,7 @@ class ModelFromYaml(object):
             'date': models.DateField,
         }
 
-        fields = {}
+        fields = {'id': models.AutoField(primary_key=True, editable=False,)}
         for fd in fields_description:
 
             assert fd['type'] in field_types.keys(), 'Wrong type of field "%s".' % fd['type']

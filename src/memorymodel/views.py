@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.contrib.contenttypes.models import ContentType
+from django.forms.models import modelformset_factory
 
 from annoying.decorators import render_to
 
@@ -8,12 +9,15 @@ import memorymodel
 
 
 @render_to('home.html')
-def home(request):
+def home(request, modelname=None):
 
     models = ((model._meta.verbose_name, model) for model in
         (getattr(memorymodel.models, model_name) for model_name in 
         ContentType.objects.filter(app_label='memorymodel').values_list(
         'model', flat=True)))
+
+    model = modelname and getattr(memorymodel.models, modelname, None)
+    formset = model and modelformset_factory(model)()
 
     if request.method == 'POST':
         pass
@@ -21,4 +25,6 @@ def home(request):
     return {
         'pagetitle': u'Tables',
         'models': models,
+        'formset': formset,
+        'verbose_name': model and model._meta.verbose_name,
     }

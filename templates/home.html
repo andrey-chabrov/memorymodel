@@ -4,9 +4,50 @@
 {% block content %}
 
 	<ul>
-    {% for name, model in models %}
-    	<li><a href=''>{{ name }}</a></li>
-    {% endfor %}
+        {% for name, model in models %}
+        	{# <li><a href='{% url "model" modelname=name %}'>{{ name }}</a></li> #}
+        {% endfor %}
 	</ul>
+
+    <form method='POST' action=''>{% csrf_token %}
+
+        <table border=1>
+
+            <tr>
+                {% for field in formset.0.visible_fields %}
+                    <td>{{ field.label }}</td>
+                {% endfor %}
+            </tr>
+
+            {% for form in formset %}
+                {% if not forloop.last %}
+                    <tr>
+                        {% for field in form.visible_fields %}
+                            <td>{{ field }}</td>
+                        {% endfor %}
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>Новый {{ verbose_name }}</td>
+                    </tr>
+                    <tr>
+                        {% for field in form.visible_fields %}
+                            <td>{{ field }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endif %}
+            {% endfor %}
+
+        </table>
+
+        {% for form in formset %}
+            {% for field in form.hidden_fields %}
+                {{ field }}
+            {% endfor %}
+        {% endfor %}
+
+        <input class="save-button" type="submit" value="Отправить" />
+
+    </form>
 
 {% endblock %}
