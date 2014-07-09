@@ -22,7 +22,7 @@ SECRET_KEY = 'bvho_@*4it=5e-%mt8p@gepsw(slwsrgdm%6d1@x1_1i1w5k0e'
 DEBUG = not os.path.isfile(os.path.join(BASE_DIR, '.production'))
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -35,6 +35,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'debug_toolbar',
     'south',
 
     'memorymodel',
