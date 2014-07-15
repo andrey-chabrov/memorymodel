@@ -1,0 +1,27 @@
+<table border=1>
+
+    <tr>
+        <% _.forEach(formset["fields"], function(field_name) { %>
+            <td><%= field_name %></td>
+        <% }); %>
+    </tr>
+
+    <% _.forEach(formset["data"], function(raw, count) { %>
+
+        <% if (count == formset["data"].length - 1){ %>
+            <tr>
+                <td>Новый <%= formset["verbose_name"] %></td>
+            </tr>
+        <% } %>
+
+        <tr>
+            <% _.forEach(raw, function(field) { %>
+                <td>
+                    <input <% _.forIn(field, function(val, attr) { %> <%= attr %>="<%= val %>" <% }); %> />
+                </td>
+            <% }); %>
+        </tr>
+
+    <% }); %>
+
+</table>

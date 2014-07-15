@@ -1,9 +1,11 @@
 {% extends "base.html" %}
+
 {% load url from future %}
 
 
 {% block javascript %} 
-    {# <script src="{{ STATIC_URL }}admin/js/calendar.js" type="text/javascript"></script> #}
+    <script src="{{ MEDIA_URL }}js/lodash-2.4.1.min.js" type="text/javascript"></script>
+    <script id="formset-templ" type="text/template">{% include "formset_js_templ.html" %}</script>
 {% endblock %}
 
 {% block content %}
@@ -27,22 +29,16 @@
             </tr>
 
             {% for form in formset %}
-                {% if not forloop.last %}
-                    <tr>
-                        {% for field in form.visible_fields %}
-                            <td>{% include "field.html" %}</td>
-                        {% endfor %}
-                    </tr>
-                {% else %}
+                {% if forloop.last %}
                     <tr>
                         <td>Новый {{ verbose_name }}</td>
                     </tr>
-                    <tr>
-                        {% for field in form.visible_fields %}
-                            <td>{% include "field.html" %}</td>
-                        {% endfor %}
-                    </tr>
                 {% endif %}
+                <tr>
+                    {% for field in form.visible_fields %}
+                        <td>{% include "field.html" %}</td>
+                    {% endfor %}
+                </tr>
             {% endfor %}
 
         </table>
