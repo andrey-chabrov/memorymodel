@@ -45,7 +45,7 @@ def home(request, modelname=None):
 
 
 @decorators.ajax_request
-def get_formset_data(request, modelname):
+def edit(request, modelname):
 
     """
     Ajax view for editing selected model.

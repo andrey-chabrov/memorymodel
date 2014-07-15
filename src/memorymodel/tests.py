@@ -83,20 +83,20 @@ class ModelFromYamlTest(TestCase):
             'department')[0].max_length, 200)
 
 
-class GetFormsetDataViewTest(TestCase):
+class EditViewTest(TestCase):
 
-    fixtures = ['get_formset_data.json']
+    fixtures = ['edit.json']
 
     def setUp(self):
         self.client = Client()
-        self.url = reverse('get_formset_data', kwargs={'modelname': 'users'})
+        self.url = reverse('edit', kwargs={'modelname': 'users'})
 
     def test_ajax_request_check(self):
         response = self.client.get(self.url)
         self.assertEqual(404, response.status_code)
 
     def test_wrong_model_name(self):
-        url = reverse('get_formset_data', kwargs={'modelname': 'wrongtest'})
+        url = reverse('edit', kwargs={'modelname': 'wrongtest'})
         response = self.client.get(url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(
             json.dumps({'errors': ['Wrong model name.']}), 
