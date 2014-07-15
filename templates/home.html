@@ -12,11 +12,14 @@
 
 	<ul>
         {% for model_name, name, model in models %}
+        	{# <a href='{% url "edit" modelname=model_name %}'>{{ name }}</a> #}
         	<li><a href='{% url "model" modelname=model_name %}'>{{ name }}</a></li>
         {% endfor %}
 	</ul>
 
-    <form method='POST' action=''>{% csrf_token %}
+    <div id="formset"></div>
+
+        <form method='POST' action=''>{% csrf_token %}
 
         <table border=1>
 

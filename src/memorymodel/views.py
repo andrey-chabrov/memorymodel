@@ -92,9 +92,10 @@ def edit(request, modelname):
             if field.is_hidden:
                 hidden_data.append(input)
             else:
+                visible_field = {'attrs': input}
                 if request.method == 'POST' and field.errors:
-                    input.update({'errors': field.errors})
-                form_data.append(input)
+                    visible_field.update({'errors': field.errors})
+                form_data.append(visible_field)
         if form_data:
             data.append(form_data)
 
