@@ -1,9 +1,13 @@
 # -*- coding:utf-8 -*-
 
+import json
 import os
+
 from datetime import date
 
+from django.core.urlresolvers import reverse
 from django.test import TestCase
+from django.test.client import Client
 
 from memorymodel import models
 from memorymodel.generator import ModelFromYaml
@@ -77,3 +81,131 @@ class ModelFromYamlTest(TestCase):
             'name')[0].max_length, 100)
         self.assertEquals(models.RoomsTest._meta.get_field_by_name(
             'department')[0].max_length, 200)
+
+
+class GetFormsetDataViewTest(TestCase):
+
+    fixtures = ['get_formset_data.json']
+
+    def setUp(self):
+        self.client = Client()
+        self.url = reverse('get_formset_data', kwargs={'modelname': 'users'})
+
+    def test_ajax_request_check(self):
+        response = self.client.get(self.url)
+        self.assertEqual(404, response.status_code)
+
+    def test_request_method_check(self):
+        response = self.client.post(self.url, {},
+            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(405, response.status_code)
+
+    def test_wrong_model_name(self):
+        url = reverse('get_formset_data', kwargs={'modelname': 'wrongtest'})
+        response = self.client.get(url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(
+            json.dumps({'errors': ['Wrong model name.']}), 
+            response.content
+        )
+
+    def test_data(self):
+        response = self.client.get(self.url,
+            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual(json.dumps({
+
+            'fields': [u'Имя', u'Зарплата', u'Дата поступления на работу'],
+
+            'data': [
+            [{
+                'id': 'id_form-0-name', 
+                'type': 'text', 
+                'value': 'test2',
+                'name': 'form-0-name',
+                'maxlength': '100'
+            },
+            {
+                'id': 'id_form-0-paycheck', 
+                'type': 'number', 
+                'value': '5',
+                'name': 'form-0-paycheck'
+            },
+            {
+                'id': 'id_form-0-date_joined', 
+                'type': 'text', 
+                'value': '2014-07-10',
+                'name': 'form-0-date_joined'
+            }],
+            [{
+                'id': 'id_form-1-name', 
+                'type': 'text', 
+                'value': 'test1',
+                'name': 'form-1-name',
+                'maxlength': '100'
+            },
+            {
+                'id': 'id_form-1-paycheck', 
+                'type': 'number', 
+                'value': '6',
+                'name': 'form-1-paycheck'
+            },
+            {
+                'id': 'id_form-1-date_joined', 
+                'type': 'text', 
+                'value': '2014-07-15',
+                'name': 'form-1-date_joined'
+            }],
+            [{
+                'id': 'id_form-2-name', 
+                'type': 'text', 
+                'name': 'form-2-name',
+                'maxlength': '100'
+            },
+            {
+                'id': 'id_form-2-paycheck', 
+                'type': 'number', 
+                'name': 'form-2-paycheck'
+            },
+            {
+                'id': 'id_form-2-date_joined', 
+                'type': 'text', 
+                'name': 'form-2-date_joined'
+            }]],
+
+            'hidden': [
+            {
+                'id': 'id_form-0-id', 
+                'type': 'hidden', 
+                'value': '1',
+                'name': 'form-0-id'
+            },
+            {
+                'id': 'id_form-1-id', 
+                'type': 'hidden', 
+                'value': '2',
+                'name': 'form-1-id'
+            },
+            {
+                'id': 'id_form-2-id', 
+                'type': 'hidden', 
+                'name': 'form-2-id'
+            },
+            {
+                'id': 'id_form-TOTAL_FORMS', 
+                'type': 'hidden', 
+                'value': '3',
+                'name': 'form-TOTAL_FORMS'
+            },
+            {
+                'id': 'id_form-INITIAL_FORMS', 
+                'type': 'hidden', 
+                'value': '2',
+                'name': 'form-INITIAL_FORMS'
+            },
+            {
+                'id': 'id_form-MAX_NUM_FORMS', 
+                'type': 'hidden', 
+                'value': '1000',
+                'name': 'form-MAX_NUM_FORMS'
+            }]
+
+            }), response.content)
