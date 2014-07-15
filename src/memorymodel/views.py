@@ -48,20 +48,22 @@ def home(request, modelname=None):
 def get_formset_data(request, modelname):
 
     """
-    Get formset's data in json format for selected model.
+    Ajax view for editing selected model.
     """
 
     if not request.is_ajax():
         raise Http404()
-
-    if request.method != 'GET':
-        return HttpResponseNotAllowed(['GET'])
 
     model = modelname and getattr(memorymodel.models, modelname, None)
     if model is None:
         return {'errors': ["Wrong model name."]}
 
     formset = model and modelformset_factory(model)(request.POST or None)
+
+    if request.method == 'POST':
+        if formset.is_valid():
+            formset.save()
+            return redirect(request.path)
 
     formset_data = {}
     formset_data.update({'fields': [f.label for f in formset[0].visible_fields()]})
@@ -90,11 +92,14 @@ def get_formset_data(request, modelname):
             if field.is_hidden:
                 hidden_data.append(input)
             else:
+                if request.method == 'POST' and field.errors:
+                    input.update({'errors': field.errors})
                 form_data.append(input)
         if form_data:
             data.append(form_data)
 
     formset_data.update({'data': data})
     formset_data.update({'hidden': hidden_data})
+    formset_data.update({'verbose_name': model._meta.verbose_name})
 
     return formset_data

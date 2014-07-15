@@ -95,11 +95,6 @@ class GetFormsetDataViewTest(TestCase):
         response = self.client.get(self.url)
         self.assertEqual(404, response.status_code)
 
-    def test_request_method_check(self):
-        response = self.client.post(self.url, {},
-            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.assertEqual(405, response.status_code)
-
     def test_wrong_model_name(self):
         url = reverse('get_formset_data', kwargs={'modelname': 'wrongtest'})
         response = self.client.get(url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
@@ -206,6 +201,41 @@ class GetFormsetDataViewTest(TestCase):
                 'type': 'hidden', 
                 'value': '1000',
                 'name': 'form-MAX_NUM_FORMS'
-            }]
+            }],
 
-            }), response.content)
+            'verbose_name': u'Пользователи',
+
+        }), response.content)
+
+    def test_field_errors(self):
+        post = {
+            'form-TOTAL_FORMS': '3',
+            'form-INITIAL_FORMS': '2',
+            'form-MAX_NUM_FORMS': '1000',
+            'form-0-paycheck': 'test',
+            'form-0-id': '1',
+            'form-1-id': '2',
+        }
+        response = self.client.post(self.url, post,
+            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEqual({
+            'id': 'id_form-0-paycheck', 
+            'type': 'number', 
+            'value': 'test',
+            'name': 'form-0-paycheck',
+            'errors': ['Enter a whole number.']
+        }, json.loads(response.content)['data'][0][1])
+
+    def test_save(self):
+        post = {
+            'form-TOTAL_FORMS': '1',
+            'form-INITIAL_FORMS': '0',
+            'form-MAX_NUM_FORMS': '1000',
+            'form-0-paycheck': '4',
+            'form-0-id': '',
+            'form-0-name': 'test_new',
+            'form-0-date_joined': '2014-07-10',
+        }
+        response = self.client.post(self.url, post,
+            HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        self.assertEquals(1, models.users.objects.filter(name='test_new').count())
