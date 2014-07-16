@@ -111,58 +111,58 @@ class EditViewTest(TestCase):
             'fields': [u'Имя', u'Зарплата', u'Дата поступления на работу'],
 
             'data': [
-            [{"attrs": {
+            [{'attrs': {
                 'id': 'id_form-0-name', 
                 'type': 'text', 
                 'value': 'test2',
                 'name': 'form-0-name',
                 'maxlength': '100'
             }},
-            {"attrs": {
+            {'attrs': {
                 'id': 'id_form-0-paycheck', 
                 'type': 'number', 
                 'value': '5',
                 'name': 'form-0-paycheck'
             }},
-            {"attrs": {
+            {'attrs': {
                 'id': 'id_form-0-date_joined', 
                 'type': 'text', 
                 'value': '2014-07-10',
                 'name': 'form-0-date_joined',
                 'class': 'datefield',
             }}],
-            [{"attrs": {
+            [{'attrs': {
                 'id': 'id_form-1-name', 
                 'type': 'text', 
                 'value': 'test1',
                 'name': 'form-1-name',
                 'maxlength': '100'
             }},
-            {"attrs": {
+            {'attrs': {
                 'id': 'id_form-1-paycheck', 
                 'type': 'number', 
                 'value': '6',
                 'name': 'form-1-paycheck'
             }},
-            {"attrs": {
+            {'attrs': {
                 'id': 'id_form-1-date_joined', 
                 'type': 'text', 
                 'value': '2014-07-15',
                 'name': 'form-1-date_joined',
                 'class': 'datefield',
             }}],
-            [{"attrs": {
+            [{'attrs': {
                 'id': 'id_form-2-name', 
                 'type': 'text', 
                 'name': 'form-2-name',
                 'maxlength': '100'
             }},
-            {"attrs": {
+            {'attrs': {
                 'id': 'id_form-2-paycheck', 
                 'type': 'number', 
                 'name': 'form-2-paycheck'
             }},
-            {"attrs": {
+            {'attrs': {
                 'id': 'id_form-2-date_joined', 
                 'type': 'text', 
                 'name': 'form-2-date_joined',
