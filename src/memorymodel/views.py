@@ -77,6 +77,8 @@ def edit(request, modelname):
             if field.is_hidden:
                 hidden_data.append(input)
             else:
+                if type(field.field.widget) is DateInput:
+                    input.update({'class': 'datefield'})
                 visible_field = {'attrs': input}
                 if request.method == 'POST' and field.errors:
                     visible_field.update({'errors': field.errors})

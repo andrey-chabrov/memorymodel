@@ -1,6 +1,17 @@
 /**
- * Treatments for edit page ajax request.
+ * Treatments for "edit" page ajax request.
  */
+
+
+function filling_formset(data) {
+    $("#formset-container").html(_.template($("#formset-templ").html(), data));
+    $(".datefield").datepicker({
+        "changeMonth": true, 
+        "changeYear": true,
+        "dateFormat": "yy-mm-dd"
+    });
+    loader.hide();
+}
 
 
 $("a.formset-ref").live("click",
@@ -9,10 +20,7 @@ $("a.formset-ref").live("click",
         event.preventDefault();
         loader.show();
 
-        $.getJSON($(event.target).attr("href"), function(data) {
-            $("#formset-container").html(_.template($("#formset-templ").html(), data));
-            loader.hide();
-        });
+        $.getJSON($(event.target).attr("href"), filling_formset);
 
     }
 );
@@ -25,10 +33,7 @@ $("#formset-form").live("submit",
         loader.show();
 
         var form = $(event.target)
-        $.post(form.attr("action"), form.serialize(), function(data) {
-            $("#formset-container").html(_.template($("#formset-templ").html(), data));
-            loader.hide();
-        });
+        $.post(form.attr("action"), form.serialize(), filling_formset);
 
     }
 );

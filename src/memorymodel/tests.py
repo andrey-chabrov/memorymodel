@@ -128,7 +128,8 @@ class EditViewTest(TestCase):
                 'id': 'id_form-0-date_joined', 
                 'type': 'text', 
                 'value': '2014-07-10',
-                'name': 'form-0-date_joined'
+                'name': 'form-0-date_joined',
+                'class': 'datefield',
             }}],
             [{"attrs": {
                 'id': 'id_form-1-name', 
@@ -147,7 +148,8 @@ class EditViewTest(TestCase):
                 'id': 'id_form-1-date_joined', 
                 'type': 'text', 
                 'value': '2014-07-15',
-                'name': 'form-1-date_joined'
+                'name': 'form-1-date_joined',
+                'class': 'datefield',
             }}],
             [{"attrs": {
                 'id': 'id_form-2-name', 
@@ -163,7 +165,8 @@ class EditViewTest(TestCase):
             {"attrs": {
                 'id': 'id_form-2-date_joined', 
                 'type': 'text', 
-                'name': 'form-2-date_joined'
+                'name': 'form-2-date_joined',
+                'class': 'datefield',
             }}]],
 
             'hidden': [
