@@ -10,7 +10,6 @@ from django.forms.widgets import HiddenInput
 from django.forms.widgets import NumberInput
 from django.forms.widgets import TextInput
 from django.http import Http404
-from django.http import HttpResponseNotAllowed
 from django.shortcuts import redirect
 from django.utils.encoding import force_text
 
@@ -102,5 +101,6 @@ def edit(request, modelname):
     formset_data.update({'data': data})
     formset_data.update({'hidden': hidden_data})
     formset_data.update({'verbose_name': model._meta.verbose_name})
+    formset_data.update({'action': request.path})
 
     return formset_data

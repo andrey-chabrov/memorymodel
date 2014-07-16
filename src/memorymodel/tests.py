@@ -204,6 +204,7 @@ class EditViewTest(TestCase):
             }],
 
             'verbose_name': u'Пользователи',
+            'action': self.url,
 
         }), response.content)
 
