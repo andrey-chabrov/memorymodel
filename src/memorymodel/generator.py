@@ -38,13 +38,16 @@ class ModelFromYaml(object):
             'int': models.IntegerField, 
             'date': models.DateField,
         }
+        default_lenght = 200
 
         fields = {'id': models.AutoField(primary_key=True, editable=False,)}
         for fd in fields_description:
 
-            assert fd['type'] in field_types.keys(), 'Wrong type of field "%s".' % fd['type']
+            assert fd['type'] in field_types.keys(),\
+                'Wrong type of field "%s".' % fd['type']
 
-            other_kwargs = {'max_length': fd['length']} if fd['type'] == 'char' else {}
+            other_kwargs = {'max_length': fd.get('length', default_lenght)}\
+                if fd['type'] == 'char' else {}
             fields.update({
                 fd['id']: field_types[fd['type']](
                     verbose_name=fd['title'],
