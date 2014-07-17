@@ -8,7 +8,10 @@ module.
 
 Installation:
     1) Install PostgreSQL server at first.
-    2) . bootstrap.sh
+    2) Test mode:
+        . bootstrap.sh
+       Production mode:
+       . bootstrap.sh production
 
 Test the application:
 ./manage.py test

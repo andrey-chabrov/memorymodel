@@ -1,0 +1,23 @@
+<VirtualHost *:80>
+
+    WSGIDaemonProcess localhost python-path=/srv/memorymodel/src:/srv/memorymodel/env/lib/python2.7/site-packages
+    WSGIProcessGroup localhost
+
+    WSGIScriptAlias / /srv/memorymodel/src/wsgi.py
+
+    <Directory /srv/memorymodel/src>
+        <Files wsgi.py>
+            Order deny,allow
+            Allow from all
+        </Files>
+    </Directory>
+
+    Alias /static/admin "/srv/memorymodel/env/lib/python2.7/site-packages/django/contrib/admin/static/admin"
+    <Directory "/srv/memorymodel/env/lib/python2.7/site-packages/django/contrib/admin/static/admin">
+        Order allow,deny
+        Options Indexes
+        Allow from all
+        IndexOptions FancyIndexing
+    </Directory>
+
+</VirtualHost>
