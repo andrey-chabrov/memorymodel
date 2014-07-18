@@ -2,6 +2,7 @@
 *.pyc
 .project
 .pydevproject
+.production
 .settings
 coverage
 env
