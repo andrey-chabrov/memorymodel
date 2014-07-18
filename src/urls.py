@@ -14,9 +14,11 @@ urlpatterns = patterns('',
 )
 
 if settings.DEBUG:
+    import debug_toolbar
     urlpatterns += patterns('',
         (r'^{0}(?P<path>.*)$'.format(settings.MEDIA_URL[1:]),
             'django.views.static.serve',
             {'document_root': settings.MEDIA_ROOT,
              'show_indexes': True}),
+        url(r'^__debug__/', include(debug_toolbar.urls)),
     )

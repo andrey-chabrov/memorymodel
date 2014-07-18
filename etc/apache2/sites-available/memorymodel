@@ -12,8 +12,16 @@
         </Files>
     </Directory>
 
-    Alias /static/admin "/srv/memorymodel/env/lib/python2.7/site-packages/django/contrib/admin/static/admin"
-    <Directory "/srv/memorymodel/env/lib/python2.7/site-packages/django/contrib/admin/static/admin">
+    Alias /site-media "/srv/memorymodel/media"
+    <Directory "/srv/memorymodel/media">
+        Order allow,deny
+        Options Indexes
+        Allow from all
+        IndexOptions FancyIndexing
+    </Directory>
+
+    Alias /static "/srv/memorymodel/static"
+    <Directory "/srv/memorymodel/static">
         Order allow,deny
         Options Indexes
         Allow from all

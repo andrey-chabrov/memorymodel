@@ -15,6 +15,8 @@ env/bin/pip install -r requirements.txt
 ./manage.py syncdb --noinput
 ./manage.py migrate
 
+./manage.py collectstatic --noinput
+
 [ "$1" == "production" ] && { 
 
     # create symbolic link for use absolute path in config files
