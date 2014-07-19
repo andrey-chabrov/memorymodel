@@ -7,14 +7,13 @@ Main code block that creates a models located in ./src/memorymodel/generator.py
 module.
 
 Installation:
-    1) Install PostgreSQL server at first.
-    2) Test mode:
-        . bootstrap.sh
-       Production mode:
-       . bootstrap.sh production
+Test mode:
+. bootstrap.sh
+Production mode:
+. bootstrap.sh production
 
-Test the application:
+Run the application's test:
 ./manage.py test
 
-Serve the application:
+Run test server:
 ./manage.py runserver

@@ -4,10 +4,9 @@
 sudo apt-get -y install python-pip python-virtualenv python-dev
 
 # install db
-cd db
-psql -U postgres -f drop.sql
-psql -U postgres -f create.sql
-cd ..
+sudo apt-get -y install postgresql-9.1 postgresql-client-9.1 postgresql-server-dev-9.1
+sudo su -c "psql -c \"create role memorymodel login encrypted password 'dgY4#o0G' valid until 'infinity' createdb;\"" postgres
+sudo su -c "psql -c \"create database memorymodel with encoding='UTF8' owner=memorymodel;\"" postgres
 
 virtualenv --no-site-packages --python=python2.7 env
 env/bin/pip install -r requirements.txt
