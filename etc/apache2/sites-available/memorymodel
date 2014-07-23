@@ -1,4 +1,6 @@
-<VirtualHost *:80>
+Listen 88
+
+<VirtualHost *:88>
 
     WSGIDaemonProcess localhost python-path=/srv/memorymodel/src:/srv/memorymodel/env/lib/python2.7/site-packages
     WSGIProcessGroup localhost
