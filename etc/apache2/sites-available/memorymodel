@@ -14,14 +14,6 @@ Listen 88
         </Files>
     </Directory>
 
-    Alias /site-media "/srv/memorymodel/media"
-    <Directory "/srv/memorymodel/media">
-        Order allow,deny
-        Options Indexes
-        Allow from all
-        IndexOptions FancyIndexing
-    </Directory>
-
     Alias /static "/srv/memorymodel/static"
     <Directory "/srv/memorymodel/static">
         Order allow,deny
